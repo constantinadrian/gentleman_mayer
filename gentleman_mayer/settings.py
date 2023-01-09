@@ -28,7 +28,11 @@ SECRET_KEY = os.environ.get("MAYER_SECRET_KEY", '')
 DEBUG = 'DEVELOPMENT' in os.environ
 
 
-ALLOWED_HOSTS = ['gentleman-mayer.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -210,8 +214,8 @@ if "MAYER_USE_AWS" in os.environ:
     }
 
     # Bucket Config
-    AWS_STORAGE_BUCKET_NAME = "gentleman-mayer"
-    AWS_S3_REGION_NAME = "eu-west-1"
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('MAYER_AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.environ.get('MAYER_AWS_S3_REGION_NAME')
     AWS_ACCESS_KEY_ID = os.environ.get('MAYER_AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('MAYER_AWS_SECRET_ACCESS_KEY')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'

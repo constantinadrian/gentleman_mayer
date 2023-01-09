@@ -4,7 +4,7 @@
 
 Gentleman Mayer an e-commerce site offer suits, tuxedo, and all other men's accessories. The website is focused on high-quality products to maintain customer satisfaction and loyalty and reduce the risk and cost of the replacement of a faulty product.
 
-[View live project here](https://gentleman-mayer.herokuapp.com/)
+[View live project here](https://gentleman-mayer.onrender.com/)
 
 ## Table of Contents
 
