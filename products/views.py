@@ -328,6 +328,22 @@ def check_form(request, product=None):
     if product:
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
+
+            # Update/delete old image file from the filesystem/cloud storage
+            # when the corresponding `Product` object is updated on image field.
+            if 'image' in form.changed_data:
+                old_product_img = Product.objects.get(pk=product.pk).image
+                if old_product_img:
+                    try:
+                        # delete from development
+                        # os.remove(old_product_img.path)
+
+                        # delete from aws s3
+                        old_product_img.delete(save=False)
+                    except FileNotFoundError:
+                        pass
+
+
             form.save()
             return {'valid': True}
 
